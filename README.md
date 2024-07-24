@@ -1,2 +1,2 @@
 # sotugyoseisaku
-ER図のFigma：https://www.figma.com/board/ZaXbltygw9PIZEYV9fwy4O/FigJam-basics?node-id=0-1&t=C2DGI9aTVu3oahHN-1    
+ER図のurl：https://drive.google.com/file/d/1nnvmDICGf6YpsVrvL2Eh5ILDOyQKaj1W/view?usp=sharing
