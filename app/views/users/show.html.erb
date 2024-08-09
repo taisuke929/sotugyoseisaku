@@ -1,0 +1,6 @@
+<h1><%= @user.name %>さんのプロフィール</h1>
+<p>Email: <%= @user.email %></p>
+<p>Rank: <%= @user.rank %></p>
+<p>Lane: <%= @user.lane %></p>
+
+<%= link_to 'プロフィール編集', edit_user_path(@user), class: 'btn btn-primary' %>
