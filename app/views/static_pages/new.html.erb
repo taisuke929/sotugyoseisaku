@@ -1,0 +1,30 @@
+<div class="container mt-4">
+  <h2>新規掲示板作成</h2>
+
+  <%= form_with model: @board, url: static_pages_path, local: true do |form| %>
+
+  <div class="mb-3">
+    <%= form.label :title, 'タイトル', class: "form-label" %>
+    <%= form.text_field :title, id: :board_title %>
+  </div>
+
+    <div class="mb-3">
+      <%= form.label :rank, "募集ランク", class: "form-label" %>
+      <%= form.select :rank, Board.ranks.keys.map { |rank| [rank.humanize, rank] }, {}, class: "form-select", required: true %>
+    </div>
+
+    <div class="mb-3">
+      <%= form.label :lane, "募集レーン", class: "form-label" %>
+      <%= form.select :lane, Board.lanes.keys.map { |lane| [lane.humanize, lane] }, {}, class: "form-select", required: true %>
+    </div>
+
+    <div class="mb-3">
+      <%= form.label :purpose, "目的", class: "form-label" %>
+      <%= form.text_area :purpose, class: "form-control", rows: 5, required: true %>
+    </div>
+
+    <%= form.submit "掲示板を作成", class: "btn btn-primary" %>
+  <% end %>
+
+  <%= link_to 'トップページに戻る', root_path, class: 'btn btn-secondary mt-3' %>
+</div>

@@ -1,0 +1,35 @@
+<div class="container mt-4">
+  <div class="d-flex justify-content-between align-items-center mb-4">
+
+ <%= link_to '掲示板作成', new_static_page_path, class: 'btn btn-danger' %>
+  </div>
+
+  <div class="row">
+  <% @boards.each do |board| %>
+    <div class="col-md-6 col-lg-4 mb-4">
+      <div class="card border-primary h-100">
+        <div class="card-header">
+          <strong>募集ランク:</strong> <%= board.rank %>
+          <span class="badge bg-secondary">募集レーン: <%= board.lane %></span>
+        </div>
+        <div class="card-body">
+          <h5 class="card-title"><%= link_to board.title, static_page_path(board.id) %></h5>
+          <p class="card-text"><%= truncate(board.purpose, length: 100) %></p>
+          <small class="text-muted"><%= time_ago_in_words(board.created_at) %>前</small>
+        </div>
+         <% if current_user && current_user.own?(board) %>
+          <div class="card-footer d-flex justify-content-end">
+            <%= link_to edit_static_page_path(board.id), id: "button-edit-#{board.id}" do %>
+              <i class="bi bi-pencil-fill"></i>
+            <% end %>
+<%= link_to static_page_path(board), method: :delete, data: { confirm: "本当に削除しますか？" }, id: "button-delete-#{board.id}", class: "text-primary" do %>
+  <i class="bi bi-trash-fill"></i>
+<% end %>
+          </div>
+        <% end %>
+      </div>
+    
+    </div>
+  <% end %>
+</div>
+</div>
