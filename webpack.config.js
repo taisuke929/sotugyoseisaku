@@ -27,10 +27,12 @@ module.exports = {
       }),
     ],
   },
-  node: {
-    // 無効なプロパティを削除
-    __dirname: true, // 必要に応じて有効化
-    __filename: true // 必要に応じて有効化
-    // 'dgram', 'fs', 'net', 'tls', 'child_process' などは削除
-  },
+  // node オプションが不要な場合は削除
+  // node: {
+  //   dgram: 'empty',
+  //   fs: 'empty',
+  //   net: 'empty',
+  //   tls: 'empty',
+  //   child_process: 'empty'
+  // }
 };
