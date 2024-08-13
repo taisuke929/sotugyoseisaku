@@ -1,8 +1,14 @@
-import MiniCssExtractPlugin from 'mini-css-extract-plugin';
-import CssMinimizerPlugin from 'css-minimizer-webpack-plugin';
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
+const path = require('path');
 
 module.exports = {
-  entry: './index.js',
+  mode: 'production', // 'development' または 'production' に変更可能
+  entry: './src/index.js', // エントリーポイントのパスを適切に修正
+  output: {
+    filename: 'bundle.js',
+    path: path.resolve(__dirname, 'dist'),
+  },
   module: {
     rules: [
       {
@@ -16,23 +22,14 @@ module.exports = {
   },
   plugins: [
     new MiniCssExtractPlugin({
-      filename: 'file.css',
+      filename: 'styles.css', // 出力する CSS ファイルの名前
     }),
   ],
   optimization: {
     minimize: true,
     minimizer: [
-      new CssMinimizerPlugin({
-        test: /optimize-me\.css/g,
-      }),
+      new CssMinimizerPlugin(),
     ],
   },
-  // node オプションが不要な場合は削除
-  // node: {
-  //   dgram: 'empty',
-  //   fs: 'empty',
-  //   net: 'empty',
-  //   tls: 'empty',
-  //   child_process: 'empty'
-  // }
+  devtool: 'source-map', // ソースマップを生成する（開発モードでの使用推奨）
 };
