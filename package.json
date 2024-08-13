@@ -10,9 +10,7 @@
     "@rails/ujs": "^6.0.0",
     "@rails/webpacker": "5.4.4",
     "bootstrap": "^5.3.3",
-    "turbolinks": "^5.2.0",
-    "webpack": "^5.1.0",
-    "webpack-cli": "^4.0.0"
+    "turbolinks": "^5.2.0"
   },
   "version": "0.1.0",
   "devDependencies": {
@@ -21,6 +19,8 @@
     "compression-webpack-plugin": "^11.1.0",
     "css-minimizer-webpack-plugin": "^7.0.0",
     "mini-css-extract-plugin": "^2.9.0",
+    "webpack": "^5.93.0",
+    "webpack-cli": "^5.1.4",
     "webpack-dev-server": "^3"
   }
 }
