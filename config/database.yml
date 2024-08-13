@@ -50,6 +50,8 @@ test:
 #
 production:
   <<: *default
-  database: sotugyoseisaku_production
+  adapter: postgresql
+  encoding: unicode
+  pool: 5
   username: sotugyoseisaku
   password: <%= ENV['SOTUGYOSEISAKU_DATABASE_PASSWORD'] %>
