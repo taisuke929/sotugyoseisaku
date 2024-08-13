@@ -3,8 +3,8 @@ const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 const path = require('path');
 
 module.exports = {
-  mode: 'production', // 'development' または 'production' に変更可能
-  entry: './src/index.js', // エントリーポイントのパスを適切に修正
+  mode: 'production', // または 'development'
+  entry: './src/index.js', // エントリーポイントのパスを確認
   output: {
     filename: 'bundle.js',
     path: path.resolve(__dirname, 'dist'),
@@ -12,17 +12,27 @@ module.exports = {
   module: {
     rules: [
       {
+        test: /\.js$/,
+        exclude: /node_modules/,
+        use: {
+          loader: 'babel-loader',
+          options: {
+            presets: ['@babel/preset-env'],
+          },
+        },
+      },
+      {
         test: /\.css$/,
         use: [
           MiniCssExtractPlugin.loader,
-          'css-loader'
-        ]
+          'css-loader',
+        ],
       },
     ],
   },
   plugins: [
     new MiniCssExtractPlugin({
-      filename: 'styles.css', // 出力する CSS ファイルの名前
+      filename: 'styles.css',
     }),
   ],
   optimization: {
@@ -31,5 +41,5 @@ module.exports = {
       new CssMinimizerPlugin(),
     ],
   },
-  devtool: 'source-map', // ソースマップを生成する（開発モードでの使用推奨）
+  devtool: 'source-map', // 開発モードでのデバッグ用
 };
