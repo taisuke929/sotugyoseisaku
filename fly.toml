@@ -1,0 +1,45 @@
+app = "sotugyoseisaku"
+
+kill_signal = "SIGINT"
+kill_timeout = 5
+processes = []
+
+[env]
+  RAILS_ENV = "production"
+   PORT = "3002"
+
+[build]
+  builder = "heroku/builder:22" # Herokuのビルドパックを指定
+
+[mounts]
+  source = "data"
+  destination = "/app/storage"
+
+[[services]]
+  internal_port = 3002
+  protocol = "tcp"
+  force_https = true
+
+  [services.concurrency]
+    type = "requests"
+    hard_limit = 25
+    soft_limit = 20
+
+  [[services.ports]]
+    handlers = ["http"]
+    port = 80
+
+  [[services.ports]]
+    handlers = ["tls", "http"]
+    port = 443
+
+  [[services.tcp_checks]]
+    grace_period = "1s"
+    interval = "15s"
+    port = 3000
+    restart_limit = 0
+    timeout = "2s"
+
+[deploy]
+  cpu = "shared"
+  memory = 1024  # ここでメモリの設定を行います (単位はMB)
