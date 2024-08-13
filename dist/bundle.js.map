@@ -1,1 +1,1 @@
-{"version":3,"file":"bundle.js","mappings":";AAAA,+B","sources":["webpack://sotugyoseisaku/./src/index.js"],"sourcesContent":["console.log('Hello, Webpack!');"],"names":[],"sourceRoot":""}
+{"version":3,"file":"bundle.js","mappings":";AAAAA,OAAO,CAACC,GAAG,CAAC,iBAAiB,CAAC,C","sources":["webpack://sotugyoseisaku/./src/index.js"],"sourcesContent":["console.log('Hello, Webpack!');"],"names":["console","log"],"sourceRoot":""}
