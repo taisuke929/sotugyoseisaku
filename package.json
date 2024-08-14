@@ -10,7 +10,10 @@
     "@rails/activestorage": "^6.0.0",
     "@rails/ujs": "^6.0.0",
     "@rails/webpacker": "5.4.4",
+    "autoprefixer": "^10.4.20",
     "bootstrap": "^5.3.3",
+    "postcss": "^8.4.41",
+    "postcss-cli": "^11.0.0",
     "turbolinks": "^5.2.0"
   },
   "version": "0.1.0",
@@ -23,5 +26,8 @@
     "@babel/preset-env": "^7.25.3",
     "@babel/preset-react": "^7.24.7",
     "babel-plugin-macros": "^3.1.0"
-  }
+  },
+    "scripts": {
+      "build:css": "postcss src/styles.css -o dist/styles.css"
+    }
 }
