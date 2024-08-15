@@ -31,6 +31,12 @@ module.exports = {
     __dirname: false, 
     __filename: false,
   },
-  
+  resolve: {
+    fallback: {
+        net: false,
+        tls: false,
+        /// ....
+    }
+},
 };
 
