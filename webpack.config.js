@@ -2,7 +2,8 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 
 module.exports = {
-  entry: './index.js',
+  mode: 'development',
+  entry: './src/index.js',
   module: {
     rules: [
       {
@@ -27,12 +28,6 @@ module.exports = {
       filename: 'file.css',
     }),
   ],
-  node: {
-    dgram: 'empty',  // この行を追加
-    fs: 'empty',     // この行を追加
-    net: 'empty',    // この行を追加
-    tls: 'empty',    // この行を追加
-    child_process: 'empty', // この行を追加
-  },
+
 };
 
