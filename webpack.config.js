@@ -1,7 +1,8 @@
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
+const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 
 module.exports = {
+  mode: 'development',
   entry: './src/index.js',
   module: {
     rules: [
@@ -16,27 +17,12 @@ module.exports = {
   },
   optimization: {
     minimizer: [
-      '...',
-      new CssMinimizerPlugin({
-        test: /optimize-me\.css$/i,
-      }),
+      new OptimizeCSSAssetsPlugin(),
     ],
   },
   plugins: [
     new MiniCssExtractPlugin({
-      filename: 'file.css',
+      filename: 'styles.css',
     }),
   ],
-  node: {
-    __dirname: false, 
-    __filename: false,
-  },
-  resolve: {
-    fallback: {
-        net: false,
-        tls: false,
-        /// ....
-    }
-},
 };
-
