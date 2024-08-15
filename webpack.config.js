@@ -16,8 +16,8 @@ module.exports = {
   },
   optimization: {
     minimizer: [
+      '...',
       new CssMinimizerPlugin({
-        // ここで正規表現を使って特定のファイルを最適化できます
         test: /optimize-me\.css$/i,
       }),
     ],
@@ -27,4 +27,12 @@ module.exports = {
       filename: 'file.css',
     }),
   ],
+  node: {
+    dgram: 'empty',  // この行を追加
+    fs: 'empty',     // この行を追加
+    net: 'empty',    // この行を追加
+    tls: 'empty',    // この行を追加
+    child_process: 'empty', // この行を追加
+  },
 };
+
