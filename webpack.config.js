@@ -2,7 +2,6 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 
 module.exports = {
-  mode: 'development',
   entry: './src/index.js',
   module: {
     rules: [
@@ -29,8 +28,9 @@ module.exports = {
     }),
   ],
   node: {
-    __dirname: false, // これにより __dirname ポリフィルを無効化
-    __filename: false, // これにより __filename ポリフィルを無効化
+    __dirname: false, 
+    __filename: false,
   },
+  
 };
 
