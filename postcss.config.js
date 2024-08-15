@@ -1,5 +1,10 @@
 module.exports = {
-  plugins: [
-    require('autoprefixer') // 使用したい他のプラグインもここに追加できます
-  ]
+  // postcssOptions に変更
+  postcssOptions: {
+    // 必要なプラグインをここに設定
+    plugins: [
+      require('autoprefixer')(),
+      // その他のプラグインを追加
+    ],
+  },
 };
