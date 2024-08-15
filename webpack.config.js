@@ -28,6 +28,9 @@ module.exports = {
       filename: 'file.css',
     }),
   ],
-
+  node: {
+    __dirname: false, // これにより __dirname ポリフィルを無効化
+    __filename: false, // これにより __filename ポリフィルを無効化
+  },
 };
 
