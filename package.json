@@ -36,8 +36,7 @@
     "webpack-dev-server": "^3"
   },
   "scripts": {
-    "start": "react-scripts start --openssl-legacy-provider",
-    "build": "webpacker compile",
+    "build": "export NODE_OPTIONS=--openssl-legacy-provider && webpack --config webpack.config.js",
     "build:css": "postcss src/styles.css -o dist/styles.css"
   },
   "resolutions": {
