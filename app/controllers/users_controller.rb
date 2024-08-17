@@ -8,6 +8,7 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
+      auto_login(@user)
       redirect_to root_path, notice: 'ユーザー登録が完了しました'
     else
       render :new, alert: '登録に失敗しました。入力内容を確認してください。'
