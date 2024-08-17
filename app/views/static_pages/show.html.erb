@@ -17,6 +17,7 @@
   </div>
 <% end %>
 
+<% if current_user %>
   <h3>コメントを追加する</h3>
   <%= form_with model: [@board, @comment],  local: true do |form| %>
     <div class="mb-3">
@@ -24,6 +25,7 @@
       <%= form.text_area :body, class: "form-control", rows: 5, required: true %>
     </div>
     <%= form.submit "投稿する", class: "btn btn-primary" %>
+  <% end %>
   <% end %>
 
   <%= link_to '戻る', root_path, class: 'btn btn-secondary mt-3' %>
