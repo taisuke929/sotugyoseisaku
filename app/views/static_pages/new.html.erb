@@ -23,6 +23,10 @@
       <%= form.text_area :purpose, class: "form-control", rows: 5, required: true %>
     </div>
 
+    <div>
+    <p>タグ<p> <%= form.collection_check_boxes :tag_ids, Tag.all, :id, :name %>
+   </div>
+
     <%= form.submit "掲示板を作成", class: "btn btn-primary" %>
   <% end %>
 
