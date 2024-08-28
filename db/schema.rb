@@ -10,7 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2024_08_06_035421) do
+ActiveRecord::Schema.define(version: 2024_08_23_061947) do
+
+  create_table "board_tags", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.bigint "board_id", null: false
+    t.bigint "tag_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["board_id"], name: "index_board_tags_on_board_id"
+    t.index ["tag_id"], name: "index_board_tags_on_tag_id"
+  end
 
   create_table "boards", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.integer "user_id", null: false
@@ -33,6 +42,12 @@ ActiveRecord::Schema.define(version: 2024_08_06_035421) do
     t.index ["user_id"], name: "index_comments_on_user_id"
   end
 
+  create_table "tags", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.string "name", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "users", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "email", null: false
     t.string "crypted_password"
@@ -45,6 +60,8 @@ ActiveRecord::Schema.define(version: 2024_08_06_035421) do
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 
+  add_foreign_key "board_tags", "boards"
+  add_foreign_key "board_tags", "tags"
   add_foreign_key "comments", "boards"
   add_foreign_key "comments", "users"
 end

@@ -2,7 +2,11 @@ class StaticPagesController < ApplicationController
   before_action :authenticate_user!, only: [:new, :create]
 
   def top
-    @boards = Board.all.order(created_at: :desc)
+    @boards = if params[:tag_id].present?
+                Tag.find(params[:tag_id]).boards.order(created_at: :desc)
+              else
+                Board.all.order(created_at: :desc)
+              end
   end
 
   def new
@@ -12,6 +16,7 @@ class StaticPagesController < ApplicationController
   def create
     @board = current_user.boards.build(board_params)
     if @board.save
+      @board.tags = Tag.where(id: params[:board][:tag_ids])
       redirect_to root_path, notice: '掲示板が作成されました'
     else
       render :new, status: :unprocessable_entity
@@ -26,11 +31,13 @@ class StaticPagesController < ApplicationController
   
   def edit
     @board = current_user.boards.find(params[:id])
+    @tags = @board.tags 
   end
 
   def update
     @board = current_user.boards.find(params[:id])
     if @board.update(board_params)
+      @board.tags = Tag.where(id: params[:board][:tag_ids])
       redirect_to  root_path, notice: '掲示板が更新されました'
     else
       render :edit, status: :unprocessable_entity, alert: '掲示板を更新できませんでした。入力内容を確認してください。'
@@ -46,7 +53,7 @@ class StaticPagesController < ApplicationController
   private
 
   def board_params
-    params.require(:board).permit(:title, :rank, :lane, :purpose)
+    params.require(:board).permit(:title, :rank, :lane, :purpose, tag_ids: [])
   end
 
   def authenticate_user!
