@@ -4,7 +4,7 @@
 # Available submodules are: :user_activation, :http_basic_auth, :remember_me,
 # :reset_password, :session_timeout, :brute_force_protection, :activity_logging,
 # :magic_login, :external
-Rails.application.config.sorcery.submodules = []
+Rails.application.config.sorcery.submodules = [:reset_password]
 
 # Here you can configure each submodule's features.
 Rails.application.config.sorcery.configure do |config|
@@ -360,7 +360,7 @@ Rails.application.config.sorcery.configure do |config|
     # Default: `false`
     #
     # user.activation_mailer_disabled =
-
+    user.reset_password_mailer = UserMailer
     # Method to send email related
     # options: `:deliver_later`, `:deliver_now`, `:deliver`
     # Default: :deliver (Rails version < 4.2) or :deliver_now (Rails version 4.2+)

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2024_08_23_061947) do
+ActiveRecord::Schema.define(version: 2024_08_30_085142) do
 
   create_table "board_tags", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.bigint "board_id", null: false
@@ -57,7 +57,12 @@ ActiveRecord::Schema.define(version: 2024_08_23_061947) do
     t.string "name"
     t.integer "rank"
     t.integer "lane"
+    t.string "reset_password_token"
+    t.datetime "reset_password_token_expires_at"
+    t.datetime "reset_password_email_sent_at"
+    t.integer "access_count_to_reset_password_page", default: 0
     t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["reset_password_token"], name: "index_users_on_reset_password_token"
   end
 
   add_foreign_key "board_tags", "boards"

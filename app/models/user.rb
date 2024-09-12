@@ -8,6 +8,7 @@ class User < ApplicationRecord
   enum rank: { silver: 0, gold: 1, master: 3 }
   enum lane: {top: 0, jg: 1, mid: 2, adc: 3, sup: 4 }
   validates :name, presence: true
+  validates :reset_password_token, uniqueness: true, allow_nil: true
 
   has_many :boards, dependent: :destroy
 
