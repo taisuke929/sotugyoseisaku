@@ -11,4 +11,19 @@
   <div>
     <%= form.submit 'ログイン' %>
   </div>
+  <script src="https://accounts.google.com/gsi/client" async defer></script>
+  <%= link_to t('.password_forget'), new_password_reset_path %>
+  <div id="g_id_onload"
+    data-client_id="951682237838-h59na5sbpq34t855mfbbr3qh07dqgl2n.apps.googleusercontent.com"
+    data-login_uri="https://lol-teamfinder.onrender.com/google_login_api/callback"
+    data-auto_prompt="false">
+  </div>
+  <div class="g_id_signin"
+    data-type="standard"
+    data-size="large"
+    data-theme="outline"
+    data-text="sign_in_with"
+    data-shape="rectangular"
+    data-logo_alignment="left">
+  </div>
 <% end %>
