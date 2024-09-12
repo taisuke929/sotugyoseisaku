@@ -7,6 +7,8 @@ class StaticPagesController < ApplicationController
               else
                 Board.all.order(created_at: :desc)
               end
+
+    @boards = @boards.page(params[:page]).per(10)
   end
 
   def new
