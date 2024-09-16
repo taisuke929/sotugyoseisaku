@@ -48,7 +48,7 @@ gem 'turbo-rails'
 gem 'letter_opener_web'
 gem 'kaminari'
 gem 'googleauth', github: 'googleapis/google-auth-library-ruby'
-
+gem 'omniauth-google-oauth2'
 
 group :test do
   # Adds support for Capybara system testing and selenium driver
