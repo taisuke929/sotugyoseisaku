@@ -15,4 +15,18 @@ class User < ApplicationRecord
   def own?(object)
     id == object&.user_id
   end
+
+  class << self
+    def find_or_create_from_auth_hash(auth_hash)
+      user_params = {
+        email: auth_hash.info.email,
+        name: auth_hash.info.name,
+        image: auth_hash.info.image
+      }
+
+      find_or_create_by(email: user_params[:email]) do |user|
+        user.update(user_params)
+      end
+    end
+  end
 end
