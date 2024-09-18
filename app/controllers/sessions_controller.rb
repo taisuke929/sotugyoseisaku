@@ -23,6 +23,7 @@ class SessionsController < ApplicationController
 
     if user
       session[:user_id] = user.id
+      Rails.logger.info("Logged in user ID: #{user.id}")
       redirect_to root_path, notice: 'Googleでログインしました'
     else
       redirect_to new_session_path, alert: 'Googleログインに失敗しました'
