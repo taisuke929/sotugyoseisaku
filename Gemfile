@@ -51,6 +51,7 @@ gem 'googleauth', github: 'googleapis/google-auth-library-ruby'
 gem 'omniauth-google-oauth2'
 gem 'dotenv-rails'
 
+
 group :test do
   # Adds support for Capybara system testing and selenium driver
   gem 'capybara', '>= 3.26'
