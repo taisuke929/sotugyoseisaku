@@ -339,6 +339,7 @@ DEPENDENCIES
   byebug
   capybara (>= 3.26)
   dockerfile-rails (>= 1.6)
+
   dotenv-rails
   googleauth!
   jbuilder (~> 2.7)

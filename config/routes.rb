@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
+
   get '/auth/:provider/callback', to: 'sessions#google_oauth2'
   get '/auth/failure', to: redirect('/')
+  get 'google_login_api/callback'
   get 'password_resets/new'
   get 'password_resets/create'
   get 'password_resets/edit'
