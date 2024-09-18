@@ -50,6 +50,7 @@ gem 'kaminari'
 gem 'googleauth', github: 'googleapis/google-auth-library-ruby'
 gem 'omniauth-google-oauth2'
 gem 'dotenv-rails'
+gem 'omniauth-rails_csrf_protection'
 
 
 group :test do
