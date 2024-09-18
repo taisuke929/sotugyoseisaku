@@ -1,7 +1,5 @@
 Rails.application.routes.draw do
 
-  get '/auth/:provider/callback', to: 'sessions#google_oauth2'
-  get '/auth/failure', to: redirect('/')
   get 'google_login_api/callback'
   get 'password_resets/new'
   get 'password_resets/create'
@@ -10,6 +8,8 @@ Rails.application.routes.draw do
   root "static_pages#top"
  
   resource :session, only: [:new, :create, :destroy]
+  get '/auth/:provider/callback', to: 'sessions#google_oauth2'
+  get '/auth/failure', to: redirect('/')
   resources :static_pages, only: %i[new create show edit update destroy] do
 end
   resources :users, only: [:new, :create, :show, :edit, :update]
