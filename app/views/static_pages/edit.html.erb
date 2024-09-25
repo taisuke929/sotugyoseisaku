@@ -24,7 +24,15 @@
     </div>
 
     <div>
-     <p>タグ<p> <%= form.collection_check_boxes :tag_ids, Tag.all, :id, :name %>
+    <p>タグ</p>
+    <div class="d-flex flex-wrap">
+      <%= form.collection_check_boxes :tag_ids, Tag.all, :id, :name do |b| %>
+        <div class="form-check me-3 mb-2">
+          <%= b.check_box class: 'form-check-input' %>
+          <%= b.label class: 'form-check-label' %>
+        </div>
+      <% end %>
+    </div>
     </div>
 
     <%= form.submit "掲示板を更新", class: "btn btn-primary" %>
