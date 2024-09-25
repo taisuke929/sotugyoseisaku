@@ -1,56 +1,66 @@
 <div class="container mt-4">
+  <!-- 検索フォームと掲示板作成ボタン -->
   <div class="d-flex justify-content-between align-items-center mb-4">
-
-  <%= form_tag root_path, method: :get, class: 'boards__searchForm' do %>
-    <%= select_tag :tag_id,
-                   options_from_collection_for_select(Tag.all, :id, :name, params[:tag_id]),
-                   {
-                     prompt: 'タグで絞り込み検索',
-                     onchange: 'submit(this.form);'
-                   }
-    %>
-  <% end %>
-
- <%= link_to '掲示板作成', new_static_page_path, class: 'btn btn-danger' %>
+    <%= form_tag root_path, method: :get, class: 'boards__searchForm' do %>
+      <%= select_tag :tag_id,
+                     options_from_collection_for_select(Tag.all, :id, :name, params[:tag_id]),
+                     {
+                       prompt: 'タグで絞り込み検索',
+                       class: 'form-select',
+                       onchange: 'submit(this.form);'
+                     }
+      %>
+    <% end %>
+    <%= link_to '掲示板作成', new_static_page_path, class: 'btn btn-danger' %>
   </div>
 
+  <!-- 掲示板の一覧 -->
   <div class="row">
-  <% @boards.each do |board| %>
-    <div class="col-md-6 col-lg-4 mb-4">
-      <div class="card border-primary h-100">
-        <div class="card-header">
-          <strong>募集ランク:</strong> <%= board.rank %>
-          <strong>募集レーン:</strong> <%= board.lane %>
-          
-<% if board.tags.any? %>
-  <% board.tags.each do |tag| %>
-    <span class="badge bg-primary"><%= tag.name.humanize %></span>
-  <% end %>
-<% else %>
-  <span class="badge bg-primary">タグなし</span>
-<% end %>
+    <% @boards.each do |board| %>
+      <div class="col-md-6 col-lg-4 mb-4">
+        <div class="card border-primary h-100">
+          <!-- カードヘッダー -->
+          <div class="card-header">
+            <strong>募集ランク:</strong> <%= board.rank %>
+            <strong>募集レーン:</strong> <%= board.lane %>
 
-
-        </div>
-        <div class="card-body">
-          <h5 class="card-title"><%= link_to board.title, static_page_path(board.id) %></h5>
-          <p class="card-text"><%= truncate(board.purpose, length: 100) %></p>
-          <small class="text-muted"><%= time_ago_in_words(board.created_at) %>前</small>
-        </div>
-         <% if current_user && current_user.own?(board) %>
-          <div class="card-footer d-flex justify-content-end">
-            <%= link_to edit_static_page_path(board.id), id: "button-edit-#{board.id}" do %>
-              <i class="bi bi-pencil-fill"></i>
-            <% end %>
-<%= link_to static_page_path(board), method: :delete, data: { confirm: "本当に削除しますか？" }, id: "button-delete-#{board.id}", class: "text-primary" do %>
-  <i class="bi bi-trash-fill"></i>
-<% end %>
+            <!-- タグ表示 -->
+            <div class="mt-2">
+              <% if board.tags.any? %>
+                <% board.tags.each do |tag| %>
+                  <span class="badge bg-primary"><%= tag.name.humanize %></span>
+                <% end %>
+              <% else %>
+                <span class="badge bg-secondary">タグなし</span>
+              <% end %>
+            </div>
           </div>
-        <% end %>
+
+          <!-- カード本文 -->
+          <div class="card-body">
+            <h5 class="card-title"><%= link_to board.title, static_page_path(board.id), class: 'text-decoration-none text-primary' %></h5>
+            <p class="card-text"><%= truncate(board.purpose, length: 100) %></p>
+            <small class="text-muted"><%= time_ago_in_words(board.created_at) %>前</small>
+          </div>
+
+          <!-- 編集・削除ボタン（所有者のみ表示） -->
+          <% if current_user && current_user.own?(board) %>
+            <div class="card-footer d-flex justify-content-end gap-2">
+              <%= link_to edit_static_page_path(board.id), id: "button-edit-#{board.id}", class: 'btn btn-sm btn-outline-primary' do %>
+                <i class="bi bi-pencil-fill"></i>
+              <% end %>
+              <%= link_to static_page_path(board), method: :delete, data: { confirm: "本当に削除しますか？" }, id: "button-delete-#{board.id}", class: "btn btn-sm btn-outline-danger" do %>
+                <i class="bi bi-trash-fill"></i>
+              <% end %>
+            </div>
+          <% end %>
+        </div>
       </div>
-    
-    </div>
-  <% end %>
-  <%= paginate @boards %>
-</div>
+    <% end %>
+  </div>
+
+  <!-- ページネーション -->
+  <div class="pagination-container d-flex justify-content-center mt-4">
+    <%= paginate @boards %>
+  </div>
 </div>

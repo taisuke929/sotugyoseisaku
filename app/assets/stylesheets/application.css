@@ -35,3 +35,48 @@
   border: 2px solid #a94442; 
   border-radius: 0.375rem;
 }
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  list-style-type: none;
+  padding: 0;
+}
+
+.pagination li {
+  margin: 0 5px;
+}
+
+.pagination li a, .pagination li span {
+  padding: 8px 12px;
+  border: 1px solid #ddd;
+  text-decoration: none;
+  color: #007bff;
+  border-radius: 4px;
+}
+
+.pagination li a:hover {
+  background-color: #f0f0f0;
+}
+
+.pagination .active span {
+  background-color: #007bff;
+  color: white;
+  border-color: #007bff;
+}
+
+.container {
+  height: 90vh; /* 高さをビューポートの90%に設定 */
+  overflow: auto; /* 内容がオーバーフローした場合にスクロール可能 */
+}
+
+h1, p {
+  margin: 0; /* マージンを0に設定 */
+  padding: 0; /* パディングも0に設定 */
+}
+
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 10px; /* 要素間のスペース */
+}
