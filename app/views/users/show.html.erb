@@ -11,14 +11,27 @@
         </div>
         
         <div class="mb-3">
-          <p class="card-text"><strong>Rank:</strong></p>
-          <p class="border p-2 rounded"><%= @user.rank.humanize %></p>
-        </div>
-        
-        <div class="mb-3">
-          <p class="card-text"><strong>Lane:</strong></p>
-          <p class="border p-2 rounded"><%= @user.lane.humanize %></p>
-        </div>
+  <p class="card-text"><strong>Rank:</strong></p>
+  <p class="border p-2 rounded">
+    <% if @user.rank.present? %>
+      <%= @user.rank.humanize %>
+    <% else %>
+      入力されていません
+    <% end %>
+  </p>
+</div>
+
+<div class="mb-3">
+  <p class="card-text"><strong>Lane:</strong></p>
+  <p class="border p-2 rounded">
+    <% if @user.lane.present? %>
+      <%= @user.lane.humanize %>
+    <% else %>
+      入力されていません
+    <% end %>
+  </p>
+</div>
+
       </div>
     </div>
     
